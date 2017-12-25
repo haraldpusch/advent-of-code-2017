@@ -20,11 +20,11 @@
 
 (defn solve-puzzle-1 []
   (let [col (read-input "resources/day5.txt")]
-    ((step-fn inc) col 0 0)))
+    ((create-step-fn inc) col 0 0)))
 
 (defn solve-puzzle-2 []
   (let [col (read-input "resources/day5.txt")]
-    ((step-fn #(if (> % 2) (dec %) (inc %))) col 0 0)))
+    ((create-step-fn #(if (> % 2) (dec %) (inc %))) col 0 0)))
 
 (defn solve []
   (println (format "Day 5 - solution 1: %d - solution 2: %d" (solve-puzzle-1) (solve-puzzle-2))))

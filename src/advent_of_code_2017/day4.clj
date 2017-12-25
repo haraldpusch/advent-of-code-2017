@@ -1,5 +1,5 @@
 (ns advent-of-code-2017.day4
-  (require [clojure.string :refer [trim] :as strs]))
+  (:require [clojure.string :refer [trim] :as strs]))
 
 (defn get-input []
   (map

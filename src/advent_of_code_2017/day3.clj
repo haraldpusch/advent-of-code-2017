@@ -1,5 +1,5 @@
 (ns advent-of-code-2017.day3
-  (require [clojure.string :refer [trim]]))
+  (:require [clojure.string :refer [trim]]))
 
 (defn abs [i] (Math/abs i))
 
@@ -17,8 +17,7 @@
       (and (= ax ay) (> x 0) (< y 0)) false
       (= ax ay) true
       (and (= ax (+ ay 1)) (> x 0) (< y 0)) true
-      :else false
-      )))
+      :else false)))
 
 (defn turn! [{direction :direction :as m}]
   (assoc m :direction
@@ -65,20 +64,16 @@
                 #(find-first-value % col index)
                 neighbors)))))
 
-(defn wrapped [in col]
-  (let [v (calculate-value in col)]
-    (println v)
-    v))
-
 (defn solve-puzzle-2 [col]
-  (let [col (take 400 (iterate step {:x 1 :y 1 :index 3 :direction :left}))
+  (let [col (take 60 (iterate step {:x 1 :y 1 :index 3 :direction :left}))
         col (cons {:x 1 :y 0 :index 2 :direction :left :value 1} col)]
-    (first
-      (filter #(> (:value %) 265149)
-              (reduce
-                #(conj %1 (wrapped %2 %1))
-                [{:x 0 :y 0 :index 1 :direction :left :value 1}]
-                col)))))
+    (:value
+      (first
+        (filter #(> (:value %) 265149)
+                (reduce
+                  #(conj %1 (calculate-value %2 %1))
+                  [{:x 0 :y 0 :index 1 :direction :left :value 1}]
+                  col))))))
 
 (defn solve []
   (let [col (iterate step {:x 1 :y 1 :index 3 :direction :left})]

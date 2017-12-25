@@ -1,5 +1,5 @@
 (ns advent-of-code-2017.day1
-  (require [clojure.string :refer [trim]]))
+  (:require [clojure.string :refer [trim]]))
 
 (defn load-input []
   (trim (slurp "resources/day1.txt")))
